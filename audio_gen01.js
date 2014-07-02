@@ -3,6 +3,11 @@ var audioContext;
 
 jQuery(function() {
     audioContext = CreateAudioContext();
+
+    if(!audioContext) {
+	alert("お使いのブラウザはWeb Audio APIに対応していません。");
+    }
+
     var oscillators = [];
     var gain;
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AUDIO_TEST 01</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="audio_test01.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">AUDIO TEST 01</a>
+	</div>
+	
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+            <!-- li><a href="#">Reset</a></li -->
+	  </ul>
+	</div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+	<div class="col-md-6">
+	  <div class="panel panel-primary">
+	    <div class="panel-heading">Web Audio API対応テスト</div>
+	    <div class="panel-body">
+	      <p>
+		このページでは，お使いの端末・WebブラウザがWeb Audio APIに対応しているかどうかをチェックします。
+		テストの実行結果は，「テスト結果」に表示されます。
+	      </p>
+	      <p class="text-danger">
+		テストでは，音声が再生されますので，音量や場所にご注意ください。
+	      </p>
+
+	      <div class="center" id="start_button_wrapper">
+		<button type="button" id="start_button" class="btn btn-primary">テスト開始</button>
+	      </div>
+
+	      <div class="panel panel-primary">
+		<div class="panel-body" id="message">
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-6">
+	  <div class="panel panel-info" id="test_result_panel">
+	    <div class="panel-heading">テスト結果</div>
+	    <div class="panel-body">
+	      <table class="table">
+		<tr>
+		  <td>Web Audio API</td>
+		  <td id="web_audio_api"></td>
+		</tr>
+		<tr>
+		  <td>発信器</td>
+		  <td id="osc_test"></td>
+		</tr>
+		<tr>
+		  <td>音声データ</td>
+		  <td id="play_sound_test"></td>
+		</tr>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="audio.js"></script>
+    <script src="audio_test01.js"></script>
+  </body>
+</html>
