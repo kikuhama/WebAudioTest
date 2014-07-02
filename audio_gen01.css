@@ -1,0 +1,12 @@
+.buttons {
+    margin: 0.5em 0 0.5em 0;
+}
+
+input.freq {
+    width: 5em;
+    text-align: right;
+}
+
+.freq_group {
+    margin-right: 1em;
+}
