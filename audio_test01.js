@@ -2,7 +2,7 @@ var AUDIO_FILES = ["audio/p30-0049p.aac", "audio/p30-0050p.aac", "audio/p30-0051
 
 jQuery(function() {
     var startWebAudioTest = function() {
-	$("#start_button").unbind("click");
+	$("#start_button").attr("disabled", "disabled");
 	showMessage("テスト開始");
 	window.scrollTo(0, $("#message").offset().top);
 	
@@ -15,6 +15,7 @@ jQuery(function() {
 	else {
 	    $("#web_audio_api").text("非対応");
 	    alert("お使いのブラウザは，Web Audio APIには対応していません。");
+	    finishTest();
 	}
     };
 
@@ -56,13 +57,7 @@ jQuery(function() {
 
     var testPlaySound = function(context) {
 	var onLoaded = function(bufferList) {
-	    console.log("音声ファイルロード完了");
-	    showMessage("音声ファイルロード完了。「テスト再開」ボタンをタップしてください。");
-	    $("#start_button").text("テスト再開");
-	    $("#start_button").click(function() {
-		$("#start_button").hide();
-		play(bufferList, 0);
-	    });
+	    play(bufferList, 0);
 	};
 
 	var play = function(bufferList, bufferIndex) {
@@ -99,13 +94,37 @@ jQuery(function() {
 
     var finishTest = function() {
 	showMessage("テスト終了。再度テストを実行するには，ページを再読込してください。");
+	$("#question_panel").show();
 	window.scrollTo(0, $("#test_result_panel").offset().top);
     };
-    
-    $("#start_button").click(startWebAudioTest);
 
+    analyzeUA();
+
+    $("#question_panel").hide();
+    $("#start_button").click(startWebAudioTest);
 });
 
 function showMessage(text) {
     $("#message").text(text);
+}
+
+function analyzeUA() {
+    var ua = navigator.userAgent;
+    if(ua.match(/^.+Android (\d+\.\d+\.\d+); (.+) Build\/.+Chrome\/([\d\.]+) .+/)) {
+	var osVer = RegExp.$1;
+	var model = RegExp.$2;
+	var chromeVer = RegExp.$3;
+	$("#os_ver").text(osVer);
+	$("#model").text(model);
+	$("#chrome_ver").text(chromeVer);
+	if(chromeVer.match(/^(\d+)\./)) {
+	    var chromeMajorVer = RegExp.$1;
+	    if(chromeMajorVer < 35) {
+		alert("お使いのChromeは，最新バージョンではありません。Google Playから最新バージョンに更新してください。");
+	    }
+	}
+    }
+    else {
+	alert("このテストページは，Android上のChromeでアクセスしてください。");
+    }
 }
